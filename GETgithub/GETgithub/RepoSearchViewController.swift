@@ -16,8 +16,6 @@ class RepoSearchViewController: UIViewController, UITableViewDelegate, UITableVi
   
   @IBOutlet weak var tableView: UITableView!
   
-  let netController = NetController()
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.estimatedRowHeight = 144

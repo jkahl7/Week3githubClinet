@@ -6,31 +6,35 @@
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>3714A800-56A8-4876-983E-059F03A97E62</string>
+	<key>IDESourceControlProjectName</key>
+	<string>GETgithub</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>2586C88BEA8D9A3DFA30CF3EC02BC5BD7E5CA0E7</key>
-		<string>https://github.com/codefellows/sea-b29-iOS.git</string>
+		<key>630D80FFF26287488EA23C98A3A3A222A36C83C2</key>
+		<string>https://github.com/jkahl7/Week3githubClinet.git</string>
 	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>GETgithub/GETgithub.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>2586C88BEA8D9A3DFA30CF3EC02BC5BD7E5CA0E7</key>
-		<string>sea-b29-iOS/</string>
+		<key>630D80FFF26287488EA23C98A3A3A222A36C83C2</key>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/codefellows/sea-b29-iOS.git</string>
+	<string>https://github.com/jkahl7/Week3githubClinet.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>2586C88BEA8D9A3DFA30CF3EC02BC5BD7E5CA0E7</string>
+	<string>630D80FFF26287488EA23C98A3A3A222A36C83C2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2586C88BEA8D9A3DFA30CF3EC02BC5BD7E5CA0E7</string>
+			<string>630D80FFF26287488EA23C98A3A3A222A36C83C2</string>
 			<key>IDESourceControlWCCName</key>
-			<string>sea-b29-iOS</string>
+			<string>Week3</string>
 		</dict>
 	</array>
 </dict>
