@@ -11,21 +11,13 @@ import UIKit
 
 struct Repo {
   
-  let owner:[String:AnyObject]
-  
-  let userName:String
-  let userRepo:String
-  let userAvatarURL:String
-  let language:String
-  
-  var userAvatar:UIImage?
+  var userName:String
+  var userRepo:String
+  var language:String?
   
   init(jsonDictionary:[String:AnyObject]) {
-    self.owner = jsonDictionary["owner"] as [String:AnyObject] // index into the owner dictionary
-    
     self.userName = jsonDictionary["name"] as String
     self.userRepo = jsonDictionary["description"] as String
-    self.language = jsonDictionary["language"] as String
-    self.userAvatarURL = self.owner["avatar_url"] as String
+    self.language = jsonDictionary["language"] as? String
   }
 }

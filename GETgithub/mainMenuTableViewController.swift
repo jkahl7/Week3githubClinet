@@ -20,13 +20,13 @@ class mainMenuTableViewController: UITableViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
     //gives us access to the netController (now a singleton) initilized in the appDelegate
     self.netController = appDelegate.netController
-    
   }
   
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     // check for accessToken, initiate oauth call if not present 
     if (self.netController.accessToken == nil) {
+      println("accessToken == nil")
       self.netController.requestAccessToken()
     }
   }

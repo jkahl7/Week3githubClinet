@@ -12,6 +12,10 @@ class RepoSearchViewController: UIViewController, UITableViewDelegate, UITableVi
 
   var repoArray = [Repo]()
   
+  var netController:NetworkController!
+  
+  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+  
   @IBOutlet weak var searchBar: UISearchBar!
   
   @IBOutlet weak var tableView: UITableView!
@@ -22,16 +26,17 @@ class RepoSearchViewController: UIViewController, UITableViewDelegate, UITableVi
     self.tableView.rowHeight = UITableViewAutomaticDimension
     self.tableView.delegate = self
     self.tableView.dataSource = self
+    self.tableView.hidden = true
+    self.searchBar.delegate = self
+    self.activityIndicator.hidden = true
     
     self.tableView.registerNib(UINib(nibName: "RepoCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "REPO_CELL")
     
-    self.netController.fetchRepoForSearchTerm("TODO:connect to searchBar", callback: { (repo, error) -> (Void) in
-      if(error != nil) {
-        self.repoArray = repo!
-        self.tableView.reloadData()
-      }
-    })
-  }
+    let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+    //gives us access to the netController (now a singleton) initilized in the appDelegate
+    self.netController = appDelegate.netController
+    
+    }
 
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.repoArray.count
@@ -41,20 +46,30 @@ class RepoSearchViewController: UIViewController, UITableViewDelegate, UITableVi
     let cell = tableView.dequeueReusableCellWithIdentifier("REPO_CELL", forIndexPath: indexPath) as RepoCell
     let myRepo = self.repoArray[indexPath.row]
     
-    
     cell.userName.text = myRepo.userName
     cell.repoContent.text = myRepo.userRepo
-    cell.language.text = "Language:" + myRepo.language
-    
-    //lazy load user avatar
-    
+    if myRepo.language != nil {
+      cell.language.text = "Language:" + myRepo.language!
+    }
     
     return cell
   }
   
-  func searchBarSearchButtonClicked(searchBar: UISearchBar) { // called when keyboard search button pressed
-    searchBar.resignFirstResponder()
-    println("\(self.searchBar.text)")
+  func searchBarSearchButtonClicked(searchBar: UISearchBar) { // 
+    self.activityIndicator.hidden = false
+    self.activityIndicator.startAnimating()
+    self.searchBar.resignFirstResponder()
+    //called when keyboard search button pressed
+    self.netController.fetchRepoForSearchTerm(self.searchBar.text, callback: { (repo, error) -> (Void) in
+      println(searchBar.text)
+      if(error ==  nil) {
+        self.repoArray = repo!
+        self.activityIndicator.stopAnimating()
+        self.activityIndicator.hidden = true
+        self.tableView.hidden = false
+        self.tableView.reloadData()
+      }
+    })
   }
   
     override func didReceiveMemoryWarning() {
