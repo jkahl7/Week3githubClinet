@@ -37,7 +37,24 @@ class RepoSearchViewController: UIViewController, UITableViewDelegate, UITableVi
     self.netController = appDelegate.netController
     
     }
+  
+  /*********************************************************************************************
+  ***                           MARK:  tableView Methods                                     ***
+  *********************************************************************************************/
 
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    //check that userRepoURL is valid and launch WebViewController
+    let repoToWebView = self.repoArray[indexPath.row]
+    //maybe check the status code of this website??
+    
+    let toVC = storyboard?.instantiateViewControllerWithIdentifier("WebViewController") as WebViewController
+    
+    toVC.repo = repoToWebView
+    
+    self.navigationController?.pushViewController(toVC, animated: true)
+    
+  }
+  
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.repoArray.count
   }
@@ -51,11 +68,23 @@ class RepoSearchViewController: UIViewController, UITableViewDelegate, UITableVi
     if myRepo.language != nil {
       cell.language.text = "Language:" + myRepo.language!
     }
-    
     return cell
   }
   
-  func searchBarSearchButtonClicked(searchBar: UISearchBar) { // 
+  /*********************************************************************************************
+  ***                           MARK:  searchBarMethods                                      ***
+  *********************************************************************************************/
+  
+  func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    if (text.alphaNumOnlyValidation() == false) {
+      println("not a valid character")
+      return false
+    } else {
+      return true
+    }
+  }
+  
+  func searchBarSearchButtonClicked(searchBar: UISearchBar) {
     self.activityIndicator.hidden = false
     self.activityIndicator.startAnimating()
     self.searchBar.resignFirstResponder()

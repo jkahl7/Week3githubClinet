@@ -21,8 +21,11 @@
 		433B28F71A704AF400228E3E /* UserSearchCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B28F61A704AF400228E3E /* UserSearchCollectionViewController.swift */; };
 		433B28F91A704C9E00228E3E /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B28F81A704C9E00228E3E /* UserCollectionViewCell.swift */; };
 		433B28FB1A704D1B00228E3E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433B28FA1A704D1B00228E3E /* User.swift */; };
+		436B215D1A71BA3900FA4513 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436B215C1A71BA3900FA4513 /* StringExtension.swift */; };
 		43889F411A70528D002AFAD3 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43889F401A70528D002AFAD3 /* UserDetailViewController.swift */; };
-		43889F431A7072CD002AFAD3 /* ToUserDetailnAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43889F421A7072CD002AFAD3 /* ToUserDetailnAnimationController.swift */; };
+		43889F431A7072CD002AFAD3 /* ToUserDetailAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43889F421A7072CD002AFAD3 /* ToUserDetailAnimationController.swift */; };
+		43CE60C91A71C46300F7DD33 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CE60C81A71C46300F7DD33 /* WebViewController.swift */; };
+		43F79D5D1A71ACDA001573A6 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F79D5C1A71ACDA001573A6 /* AlertView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +57,11 @@
 		433B28F61A704AF400228E3E /* UserSearchCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchCollectionViewController.swift; sourceTree = "<group>"; };
 		433B28F81A704C9E00228E3E /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		433B28FA1A704D1B00228E3E /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		436B215C1A71BA3900FA4513 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		43889F401A70528D002AFAD3 /* UserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
-		43889F421A7072CD002AFAD3 /* ToUserDetailnAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToUserDetailnAnimationController.swift; sourceTree = "<group>"; };
+		43889F421A7072CD002AFAD3 /* ToUserDetailAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToUserDetailAnimationController.swift; sourceTree = "<group>"; };
+		43CE60C81A71C46300F7DD33 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		43F79D5C1A71ACDA001573A6 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AlertView.swift; path = ../AlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				433AD1091A6DADAB0077794B /* Repo.swift */,
+				436B215C1A71BA3900FA4513 /* StringExtension.swift */,
 				433B28FA1A704D1B00228E3E /* User.swift */,
 			);
 			name = Model;
@@ -146,6 +153,7 @@
 			children = (
 				433AD0E91A6DA89C0077794B /* LaunchScreen.xib */,
 				432361191A6DD910002844DD /* RepoCell.swift */,
+				43F79D5C1A71ACDA001573A6 /* AlertView.swift */,
 				432361171A6DD7F4002844DD /* RepoCell.xib */,
 				433B28F81A704C9E00228E3E /* UserCollectionViewCell.swift */,
 				433AD0E41A6DA89C0077794B /* Main.storyboard */,
@@ -159,8 +167,9 @@
 				433AD10B1A6DADFE0077794B /* NetController.swift */,
 				433AD1021A6DA94D0077794B /* mainMenuTableViewController.swift */,
 				432361151A6DBC7E002844DD /* RepoSearchViewController.swift */,
+				43CE60C81A71C46300F7DD33 /* WebViewController.swift */,
 				433B28F61A704AF400228E3E /* UserSearchCollectionViewController.swift */,
-				43889F421A7072CD002AFAD3 /* ToUserDetailnAnimationController.swift */,
+				43889F421A7072CD002AFAD3 /* ToUserDetailAnimationController.swift */,
 				43889F401A70528D002AFAD3 /* UserDetailViewController.swift */,
 			);
 			name = Controller;
@@ -267,16 +276,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43889F431A7072CD002AFAD3 /* ToUserDetailnAnimationController.swift in Sources */,
+				43889F431A7072CD002AFAD3 /* ToUserDetailAnimationController.swift in Sources */,
 				432361161A6DBC7E002844DD /* RepoSearchViewController.swift in Sources */,
 				433AD10A1A6DADAB0077794B /* Repo.swift in Sources */,
 				433AD10C1A6DADFE0077794B /* NetController.swift in Sources */,
 				433AD0E11A6DA89C0077794B /* AppDelegate.swift in Sources */,
+				43F79D5D1A71ACDA001573A6 /* AlertView.swift in Sources */,
 				433AD1031A6DA94D0077794B /* mainMenuTableViewController.swift in Sources */,
 				433B28FB1A704D1B00228E3E /* User.swift in Sources */,
 				43889F411A70528D002AFAD3 /* UserDetailViewController.swift in Sources */,
 				433B28F91A704C9E00228E3E /* UserCollectionViewCell.swift in Sources */,
 				433B28F71A704AF400228E3E /* UserSearchCollectionViewController.swift in Sources */,
+				43CE60C91A71C46300F7DD33 /* WebViewController.swift in Sources */,
+				436B215D1A71BA3900FA4513 /* StringExtension.swift in Sources */,
 				4323611A1A6DD910002844DD /* RepoCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
