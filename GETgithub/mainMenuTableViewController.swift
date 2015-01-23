@@ -8,11 +8,13 @@
 
 import UIKit
 
-class mainMenuTableViewController: UITableViewController {
+class mainMenuTableViewController: UITableViewController
+{
 
   var netController:NetworkController!
   
-  override func viewDidLoad() {
+  override func viewDidLoad()
+  {
     super.viewDidLoad()
     /*provides a centralized point of control and coordination for apps running on iOS. Every app must have exactly one instance of UIApplication (or a subclass of UIApplication). */
     // this property gives us access to the appDelegate
@@ -22,12 +24,14 @@ class mainMenuTableViewController: UITableViewController {
     self.netController = appDelegate.netController
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(animated: Bool)
+  {
     super.viewDidAppear(animated)
     //clears out the navcontroller delegate - otherwise there will be issues w/ userSearchVC - it is a navCont delegate - will become zombie when returning to main view
     self.navigationController?.delegate = nil
     // check for accessToken, initiate oauth call if not present 
-    if (self.netController.accessToken == nil) {
+    if (self.netController.accessToken == nil)
+    {
       println("accessToken == nil")
       self.netController.requestAccessToken()
     }

@@ -12,36 +12,24 @@ class UserDetailViewController: UIViewController {
 
   // after selecting a collectionView Cell in userSearch Collection view, this screen will be displayed with the users image & information
   
-  var selectedUser:User?
+  var selectedUser      : User?
+  var imageDestination  : CGRect?
   
   @IBOutlet weak var imageView: UIImageView!
-  
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    if let image = self.selectedUser?.userAvatarImage {
-      self.imageView.image = image
+    if let image = self.selectedUser?.userAvatarImage
+    {
+      self.imageView.image  = image
+      self.imageDestination = self.imageView.frame
     }
-    
     println("transition to detail complete")
-        // Do any additional setup after loading the view.
+  }
+
+    override func didReceiveMemoryWarning()
+    {
+      super.didReceiveMemoryWarning()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

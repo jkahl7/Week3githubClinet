@@ -9,17 +9,18 @@
 import UIKit
 
 
-struct Repo {
+struct Repo
+{
+  var userName    : String
+  var userRepo    : String
+  var userRepoURL : String?
+  var language    : String?
   
-  var userName:String
-  var userRepo:String
-  var userRepoURL:String?
-  var language:String?
-  
-  init(jsonDictionary:[String:AnyObject]) {
-    self.userName = jsonDictionary["name"] as String
-    self.userRepo = jsonDictionary["description"] as String
+  init(jsonDictionary : [String:AnyObject])
+  {
+    self.userName    = jsonDictionary["name"] as String
+    self.userRepo    = jsonDictionary["description"] as String
     self.userRepoURL = jsonDictionary["html_url"] as? String
-    self.language = jsonDictionary["language"] as? String
+    self.language    = jsonDictionary["language"] as? String
   }
 }

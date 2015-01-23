@@ -8,27 +8,26 @@
 
 import UIKit
 
-class UserSearchCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, UINavigationControllerDelegate {
-
-  var usersArray = Array<User>()
+class UserSearchCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, UINavigationControllerDelegate
+{
+ 
+  var users = [User]()
   
-  var imageDictionary = [String:UIImage]()
-  
-  var netController:NetworkController!
+  var netController       : NetworkController!
+  var imageOrigin         : CGRect?
+  var selectedIndexPaths  : NSIndexPath?
   
   @IBOutlet weak var collectionView: UICollectionView!
   
   @IBOutlet weak var searchBar: UISearchBar!
   
-  var imageOrigin:CGRect?
-  
-  var selectedIndexPaths:NSIndexPath?
-  
-  override func viewDidLoad() {
+  override func viewDidLoad()
+  {
    super.viewDidLoad()
-   self.collectionView.reloadData()
-    self.searchBar.delegate = self
-    self.collectionView.delegate = self
+    self.collectionView.reloadData()
+  
+    self.searchBar.delegate        = self
+    self.collectionView.delegate   = self
     self.collectionView.dataSource = self
     
     // will become a zombie when we return to main view - need to clear this out
@@ -38,12 +37,14 @@ class UserSearchCollectionViewController: UIViewController, UICollectionViewData
     self.netController = appDelegate.netController
   }
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(animated: Bool)
+  {
     super.viewDidAppear(animated)
     self.collectionView.reloadData()
   }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -52,36 +53,41 @@ class UserSearchCollectionViewController: UIViewController, UICollectionViewData
   ***                           MARK:  CollectionView Methods                                ***
   *********************************************************************************************/
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return self.usersArray.count
+        return self.users.count
     }
-  /*
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-     
+  
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    {
       let itemProperties = self.collectionView.layoutAttributesForItemAtIndexPath(indexPath)
       self.imageOrigin = self.view.convertRect(itemProperties!.frame, fromCoordinateSpace: collectionView)
       
+      
+      /*
       let storyboard = UIStoryboard(name: "Main", bundle:nil)
       let toDetailVC = storyboard.instantiateViewControllerWithIdentifier("UserDetailViewController") as UserDetailViewController
       toDetailVC.selectedUser = self.usersArray[indexPath.row]
       self.navigationController?.pushViewController(toDetailVC, animated: true)
-  }
-  */
+    */
+    }
+
   func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("USER_CELL", forIndexPath: indexPath) as UserCollectionViewCell
     cell.imageView.image = nil
-    cell.backgroundColor = UIColor.greenColor()
     
-    if(self.usersArray[indexPath.row].userAvatarImage == nil) {
-      self.netController.fetchUserImage(self.usersArray[indexPath.row].userAvatarURL, index: indexPath, completionHandler: { (userImage, storedIndex, errorReport) -> (Void) in
-        if(errorReport == nil) {
-          self.usersArray[storedIndex].updateImage(userImage!)
+    if(self.users[indexPath.row].userAvatarImage == nil)
+    {
+      self.netController.fetchUserImage(self.users[indexPath.row].userAvatarURL, index: indexPath, completionHandler: { (userImage, storedIndex, errorReport) -> (Void) in
+        if(errorReport == nil)
+        {
+          self.users[storedIndex].updateImage(userImage!)
           cell.imageView.image = userImage
         }
       })
     } else {
-      cell.imageView.image = self.usersArray[indexPath.row].userAvatarImage
+      cell.imageView.image = self.users[indexPath.row].userAvatarImage
     }
     return cell
   }
@@ -91,9 +97,12 @@ class UserSearchCollectionViewController: UIViewController, UICollectionViewData
   *********************************************************************************************/
   
   
-  func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    if let homeViewController = fromVC as? UserSearchCollectionViewController {
-      if let detailViewController = toVC as? UserDetailViewController {
+  func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
+  {
+    if let homeViewController = fromVC as? UserSearchCollectionViewController
+    {
+      if let detailViewController = toVC as? UserDetailViewController
+      {
         let toAnimatorVC = ToUserDetailAnimationController()
         
         return toAnimatorVC
@@ -105,11 +114,13 @@ class UserSearchCollectionViewController: UIViewController, UICollectionViewData
     return nil
   }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "PRESENT_USER_DETAIL" {
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+  {
+    if segue.identifier == "PRESENT_USER_DETAIL"
+    {
       let toVC = segue.destinationViewController as UserDetailViewController
       let selectedIndex = self.collectionView.indexPathsForSelectedItems().first as NSIndexPath
-      toVC.selectedUser = self.usersArray[selectedIndex.row]
+      toVC.selectedUser = self.users[selectedIndex.row]
     }
   }
   
@@ -123,7 +134,8 @@ class UserSearchCollectionViewController: UIViewController, UICollectionViewData
     //TODO: add an alert here
     
     
-    if (text.alphaNumOnlyValidation() == false) {
+    if (text.userNameSearchValidation() == false)
+    {
       println("not a valid character")
       return false
     } else {
@@ -131,20 +143,18 @@ class UserSearchCollectionViewController: UIViewController, UICollectionViewData
     }
   }
   
-  func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+  func searchBarSearchButtonClicked(searchBar: UISearchBar)
+  {
     // fetch userSearch info in the netVC
     self.netController.fetchUserInfo(searchBar.text, callback: { (user, error) -> (Void) in
-      if(error == nil) {
-        self.usersArray = user!
+      if(error == nil)
+      {
+        self.users = user!
+      
         self.collectionView.reloadData()
         self.searchBar.resignFirstResponder()
       }
       println(error)
     })
   }
-  
-  
-  
-  
-  
 }

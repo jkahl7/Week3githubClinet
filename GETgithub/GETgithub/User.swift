@@ -8,18 +8,21 @@
 
 import UIKit
 
-class User {
-  var userName:String
-  var userAvatarURL:NSURL
-  var userAvatarImage:UIImage?
+class User
+{
+  var userName        : String
+  var userAvatarURL   : NSURL
+  var userAvatarImage : UIImage?
 
-  init(jsonDictionary:[String:AnyObject]) {
-    self.userName = jsonDictionary["login"] as String
-    let url = jsonDictionary["avatar_url"] as String
+  init(jsonDictionary:[String:AnyObject])
+  {
+    self.userName      = jsonDictionary["login"] as String
+    let url            = jsonDictionary["avatar_url"] as String
     self.userAvatarURL = NSURL(string: url)!
   }
   
-  func updateImage(image:UIImage) {
+  func updateImage(image:UIImage)
+  {
     self.userAvatarImage = image as UIImage
   }
 }

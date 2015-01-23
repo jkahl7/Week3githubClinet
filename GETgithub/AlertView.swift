@@ -8,23 +8,12 @@
 
 import UIKit
 
-class AlertView: UIView {
-
+class AlertView: UIView
+{
+  @IBOutlet weak var alertButton  : UIButton!
   
-  @IBOutlet weak var alertButton: UIButton!
-  
-  
-  override func awakeFromNib() {
+  override func awakeFromNib()
+  {
     super.awakeFromNib()
-    // Initialization code
   }
-  
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-
 }
