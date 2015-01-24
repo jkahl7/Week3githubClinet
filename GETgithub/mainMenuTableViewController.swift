@@ -11,7 +11,9 @@ import UIKit
 class mainMenuTableViewController: UITableViewController
 {
 
-  var netController:NetworkController!
+  var netController : NetworkController!
+  
+  var buttonLoop    : Bool = true
   
   override func viewDidLoad()
   {
@@ -32,29 +34,22 @@ class mainMenuTableViewController: UITableViewController
     // check for accessToken, initiate oauth call if not present 
     if (self.netController.accessToken == nil)
     {
-      println("accessToken == nil")
-      self.netController.requestAccessToken()
+      //MARK: AlertView - when "I Dig" is clicked - launches request access token from AlertView
+      let alertView = NSBundle.mainBundle().loadNibNamed("AlertView", owner: self, options: nil).first as AlertView
+      alertView.alertLabel.text = "You need to sign in, ya dig?"
+      alertView.center    = self.view.center // aligns the alertView within the owners(mainMenu) view
+      alertView.alpha     = 0
+      alertView.transform = CGAffineTransformMakeScale(0.1, 0.1) // alertView.transforms initial value
+      self.view.addSubview(alertView)
+      
+      UIView.animateWithDuration(0.4, delay: 0.3, options: nil, animations: { () -> Void in
+        alertView.alpha     = 1.0
+        alertView.transform = CGAffineTransformMakeScale(1.1, 1.1)
+        }) { (finished) -> Void in
+          alertView.transform = CGAffineTransformMakeScale(1.0, 1.0)
+      }
     }
-  
-    /*During the loading process, this method unarchives each object, initializes it, sets its properties to their configured values, and reestablishes any connections to other objects // it is stored as an array */
-    
-    /*
-    let alertView = NSBundle.mainBundle().loadNibNamed("AlertView", owner: self, options: nil).first as UIView
-    
-    alertView.center = self.view.center // aligns the alertView within the owners(mainMenu) view
-    alertView.alpha = 0
-    alertView.transform = CGAffineTransformMakeScale(0.1, 0.1) // alertView.transforms initial value
-    self.view.addSubview(alertView)
-    
-    UIView.animateWithDuration(0.4, delay: 0.3, options: nil, animations: { () -> Void in
-      alertView.alpha = 1.0
-      alertView.transform = CGAffineTransformMakeScale(1.0, 1.0)
-    }) { (finished) -> Void in
-      println(finished)
-    }*/
   }
-
-
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()

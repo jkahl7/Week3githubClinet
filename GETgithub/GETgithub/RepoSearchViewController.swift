@@ -17,6 +17,10 @@ class RepoSearchViewController: UIViewController, UITableViewDelegate, UITableVi
   @IBOutlet weak var activityIndicator  : UIActivityIndicatorView!
   @IBOutlet weak var searchBar          : UISearchBar!
   @IBOutlet weak var tableView          : UITableView!
+ /*
+  Make a symbolic breakpoint at UIViewAlertForUnsatisfiableConstraints to catch this in the debugger.
+  The methods in the UIConstraintBasedLayoutDebugging category on UIView listed in <UIKit/UIView.h> may also be helpful.
+  */
   
   override func viewDidLoad()
   {
@@ -54,22 +58,35 @@ class RepoSearchViewController: UIViewController, UITableViewDelegate, UITableVi
     self.navigationController?.pushViewController(toVC, animated: true)
   }
   
+
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
   {
     return self.repoArray.count
   }
+
 
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
   {
     let cell   = tableView.dequeueReusableCellWithIdentifier("REPO_CELL", forIndexPath: indexPath) as RepoCell
     let myRepo = self.repoArray[indexPath.row]
     
-    cell.userName.text    = myRepo.userName
-    cell.repoContent.text = myRepo.userRepo
+    cell.userName.text         = myRepo.userName
+    cell.repoContent.text      = myRepo.userRepo
+    cell.backgroundImage.backgroundColor = UIColor.grayColor()
     
     if myRepo.language != nil
     {
       cell.language.text = "Language:" + myRepo.language!
+    }
+    
+    cell.alpha     = 0.0
+    cell.transform = CGAffineTransformMakeScale(0.1, 0.5) // alertView.transforms initial value
+    
+    UIView.animateWithDuration(0.4, delay: 0.2, options: nil, animations: { () -> Void in
+      cell.alpha     = 0.75
+      cell.transform = CGAffineTransformMakeScale(1.0, 1.0)
+      }) { (finished) -> Void in
+        cell.alpha   = 1.0
     }
     return cell
   }
@@ -88,6 +105,7 @@ class RepoSearchViewController: UIViewController, UITableViewDelegate, UITableVi
       return true
     }
   }
+  
   
   func searchBarSearchButtonClicked(searchBar: UISearchBar)
   {
@@ -108,6 +126,7 @@ class RepoSearchViewController: UIViewController, UITableViewDelegate, UITableVi
       }
     })
   }
+  
   
     override func didReceiveMemoryWarning()
     {

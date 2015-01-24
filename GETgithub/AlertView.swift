@@ -10,8 +10,15 @@ import UIKit
 
 class AlertView: UIView
 {
-  @IBOutlet weak var alertButton  : UIButton!
+  let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
   
+  @IBOutlet weak var alertLabel   : UILabel!
+  
+  @IBAction func alertButton(sender: UIButton)
+  {
+    let netCont = appDelegate.netController
+    netCont.requestAccessToken()
+  }
   override func awakeFromNib()
   {
     super.awakeFromNib()

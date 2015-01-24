@@ -10,14 +10,10 @@ import UIKit
 
 class RepoCell: UITableViewCell
 {
-
-  
-  @IBOutlet weak var userName     : UILabel!
-  @IBOutlet weak var repoContent  : UILabel!
-  @IBOutlet weak var language     : UILabel!
-  @IBOutlet weak var userAvatar   : UIImageView!
-  
- 
+  @IBOutlet weak var backgroundImage  : UIImageView!
+  @IBOutlet weak var userName         : UILabel!
+  @IBOutlet weak var repoContent      : UILabel!
+  @IBOutlet weak var language         : UILabel!
   
   override func awakeFromNib()
   {
@@ -28,5 +24,4 @@ class RepoCell: UITableViewCell
   {
     super.setSelected(selected, animated: animated)
   }
-
 }

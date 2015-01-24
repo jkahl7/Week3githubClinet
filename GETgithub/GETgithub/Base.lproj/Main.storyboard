@@ -108,7 +108,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ou-yW-nGm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11" y="162"/>
+            <point key="canvasLocation" x="11" y="233"/>
         </scene>
         <!--UserDetail-->
         <scene sceneID="9OY-vC-s4z">
@@ -231,13 +231,13 @@
                                     <constraint firstAttribute="width" constant="600" id="Xpk-zC-5Ed"/>
                                     <constraint firstAttribute="height" constant="44" id="qIS-bL-Lpa"/>
                                 </constraints>
+                                <color key="barTintColor" red="0.77266810665140873" green="0.96144545024154882" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="wi9-5N-9pO" secondAttribute="trailing" constant="-16" id="GOt-ap-qXF"/>
-                            <constraint firstItem="wi9-5N-9pO" firstAttribute="top" secondItem="4kZ-dm-ATo" secondAttribute="bottom" id="GkS-jd-MqR"/>
                             <constraint firstItem="4kZ-dm-ATo" firstAttribute="top" secondItem="YNc-RH-Yft" secondAttribute="bottom" id="TyQ-BR-htM"/>
                             <constraint firstItem="4kZ-dm-ATo" firstAttribute="leading" secondItem="iUv-LC-eLj" secondAttribute="leading" id="gvd-z7-jvi"/>
                             <constraint firstAttribute="trailing" secondItem="4kZ-dm-ATo" secondAttribute="trailing" id="iDN-3Z-mob"/>
@@ -245,11 +245,6 @@
                             <constraint firstAttribute="bottomMargin" secondItem="wi9-5N-9pO" secondAttribute="bottom" constant="-108" id="xq3-Ht-ppA"/>
                             <constraint firstItem="wi9-5N-9pO" firstAttribute="top" secondItem="4kZ-dm-ATo" secondAttribute="bottom" id="zmU-U5-S1N"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="GkS-jd-MqR"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="wi9-5N-9pO" id="Rna-jD-KF1"/>
@@ -260,7 +255,7 @@
             </objects>
             <point key="canvasLocation" x="716" y="162"/>
         </scene>
-        <!--Repo Search View Controller-->
+        <!--User Repositories -->
         <scene sceneID="48F-zZ-gOo">
             <objects>
                 <viewController id="3vv-Ug-Yna" customClass="RepoSearchViewController" customModule="GETgithub" customModuleProvider="target" sceneMemberID="viewController">
@@ -275,25 +270,23 @@
                             <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Search Repositories " showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tbj-0X-sj0">
                                 <rect key="frame" x="0.0" y="60" width="600" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="51c-aO-z2J"/>
-                                    <constraint firstAttribute="width" constant="600" id="kkT-1l-ZdX"/>
+                                    <constraint firstAttribute="width" constant="600" id="9U5-G6-bWp"/>
+                                    <constraint firstAttribute="height" constant="44" id="ULE-vz-87P"/>
                                 </constraints>
+                                <color key="barTintColor" red="0.77266810665140873" green="0.96144545024154882" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <textInputTraits key="textInputTraits" spellCheckingType="yes" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
                             </searchBar>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="fam-by-YSL">
                                 <rect key="frame" x="300" y="100" width="37" height="37"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="37" id="dtp-0j-hfF"/>
-                                    <constraint firstAttribute="height" constant="37" id="mhk-af-NFD"/>
-                                </constraints>
                                 <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="83" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Tgo-dr-SQu">
-                                <rect key="frame" x="0.0" y="100" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="104" width="600" height="496"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="600" id="e8x-tj-RoT"/>
+                                    <constraint firstAttribute="height" constant="496" id="Mnd-2h-e9m"/>
+                                    <constraint firstAttribute="width" constant="600" id="gRy-rA-wdM"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="REPO_CELL" rowHeight="144" id="u4F-XP-ASh" customClass="RepoCell" customModule="GETgithub" customModuleProvider="target">
@@ -307,24 +300,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="tbj-0X-sj0" secondAttribute="trailing" constant="-16" id="WqW-ft-dPX"/>
-                            <constraint firstItem="tbj-0X-sj0" firstAttribute="top" secondItem="2b8-ql-D4L" secondAttribute="topMargin" constant="60" id="XYv-jn-ryz"/>
-                            <constraint firstAttribute="centerY" secondItem="fam-by-YSL" secondAttribute="centerY" constant="181.5" id="ij9-8N-30R"/>
-                            <constraint firstItem="tbj-0X-sj0" firstAttribute="leading" secondItem="2b8-ql-D4L" secondAttribute="leadingMargin" constant="-16" id="jFP-c3-4GS"/>
-                            <constraint firstItem="Tgo-dr-SQu" firstAttribute="trailing" secondItem="tbj-0X-sj0" secondAttribute="trailing" id="jl1-Ia-W8J"/>
-                            <constraint firstItem="Tgo-dr-SQu" firstAttribute="top" secondItem="fam-by-YSL" secondAttribute="top" id="lBK-j4-X3u"/>
-                            <constraint firstItem="fam-by-YSL" firstAttribute="leading" secondItem="Tgo-dr-SQu" secondAttribute="trailing" constant="-300" id="oht-ec-QcN"/>
-                            <constraint firstAttribute="centerX" secondItem="fam-by-YSL" secondAttribute="centerX" constant="-18.5" id="qb4-mN-Wnk"/>
-                            <constraint firstItem="Tgo-dr-SQu" firstAttribute="top" relation="lessThanOrEqual" secondItem="fam-by-YSL" secondAttribute="top" id="sHR-3j-hAG"/>
-                            <constraint firstItem="Tgo-dr-SQu" firstAttribute="leading" secondItem="tbj-0X-sj0" secondAttribute="leading" id="x4S-v4-lSo"/>
+                            <constraint firstItem="XMX-I4-Xw1" firstAttribute="top" secondItem="Tgo-dr-SQu" secondAttribute="bottom" id="9NF-5b-jhB"/>
+                            <constraint firstItem="tbj-0X-sj0" firstAttribute="leading" secondItem="2b8-ql-D4L" secondAttribute="leadingMargin" constant="-16" id="IBV-x1-wrb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tbj-0X-sj0" secondAttribute="trailing" constant="-16" id="Rbe-Cm-Q9B"/>
+                            <constraint firstAttribute="centerX" secondItem="fam-by-YSL" secondAttribute="centerX" constant="-18.5" id="X06-kb-BfK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Tgo-dr-SQu" secondAttribute="trailing" constant="-16" id="YVY-yD-yCO"/>
+                            <constraint firstAttribute="centerY" secondItem="fam-by-YSL" secondAttribute="centerY" constant="181.5" id="e74-M5-v1l"/>
+                            <constraint firstItem="Tgo-dr-SQu" firstAttribute="leading" secondItem="2b8-ql-D4L" secondAttribute="leadingMargin" constant="-16" id="ioE-GZ-U1y"/>
+                            <constraint firstItem="Tgo-dr-SQu" firstAttribute="top" secondItem="tbj-0X-sj0" secondAttribute="bottom" id="lKL-pO-w5c"/>
+                            <constraint firstItem="tbj-0X-sj0" firstAttribute="top" secondItem="2b8-ql-D4L" secondAttribute="topMargin" constant="60" id="wEs-ni-xfq"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="sHR-3j-hAG"/>
-                                <exclude reference="oht-ec-QcN"/>
-                            </mask>
-                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="User Repositories " id="SSI-sB-Yy4" userLabel="Search User Repositories "/>
                     <connections>
                         <outlet property="activityIndicator" destination="fam-by-YSL" id="HaP-PI-0Vp"/>
                         <outlet property="searchBar" destination="tbj-0X-sj0" id="Pqn-tY-kLJ"/>

@@ -72,10 +72,10 @@ class NetworkController
           case 200...299:
             println("\(urlResponse.statusCode)")
             // the data github is returning is not JSON - TODO: there is a way to request JSON
-            let tokenRecieved = NSString(data: data, encoding: NSASCIIStringEncoding)
+            let tokenRecieved  = NSString(data: data, encoding: NSASCIIStringEncoding)
             //now need to parse the response and pull out the token
             let tokenComponent = tokenRecieved?.componentsSeparatedByString("&").first as String
-            let token = tokenComponent.componentsSeparatedByString("=").last
+            let token          = tokenComponent.componentsSeparatedByString("=").last
             
             //store this using NSUserDefault - in init constructor - check if this key has a value and assgin it to the accessToken
             NSUserDefaults.standardUserDefaults().setObject(token, forKey: self.accessTokenKey)

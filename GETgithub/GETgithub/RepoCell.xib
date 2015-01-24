@@ -22,6 +22,8 @@
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
+                        <color key="shadowColor" red="0.81648516414141414" green="0.81648516414141414" blue="0.81648516414141414" alpha="1" colorSpace="calibratedRGB"/>
+                        <size key="shadowOffset" width="1" height="1"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="language" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fL-tm-w86">
                         <rect key="frame" x="165" y="10" width="100" height="21"/>
@@ -32,6 +34,8 @@
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
+                        <color key="shadowColor" red="0.81648516414141414" green="0.81648516414141414" blue="0.81648516414141414" alpha="1" colorSpace="calibratedRGB"/>
+                        <size key="shadowOffset" width="1" height="1"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="repoContent" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvV-7E-jBh">
                         <rect key="frame" x="10" y="50" width="250" height="21"/>
@@ -39,10 +43,15 @@
                             <constraint firstAttribute="height" constant="21" id="YtK-Os-B0c"/>
                             <constraint firstAttribute="width" constant="250" id="sDn-0t-eHn"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
+                        <color key="shadowColor" red="0.76870265151515149" green="0.76870265151515149" blue="0.76870265151515149" alpha="1" colorSpace="calibratedRGB"/>
+                        <size key="shadowOffset" width="1" height="1"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wGo-zi-pe6" userLabel="backgroundImage">
+                        <rect key="frame" x="273" y="8" width="50" height="50"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="7fL-tm-w86" firstAttribute="top" secondItem="5he-vF-jR2" secondAttribute="topMargin" constant="2" id="1en-rF-Up3"/>
@@ -55,7 +64,9 @@
                     <constraint firstItem="7fL-tm-w86" firstAttribute="leading" secondItem="6ng-Wr-I9q" secondAttribute="trailing" constant="35" id="ugz-6Q-CD1"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" red="0.93010903119058219" green="0.95807686237373735" blue="0.60345591142213029" alpha="0.42999999999999999" colorSpace="calibratedRGB"/>
             <connections>
+                <outlet property="backgroundImage" destination="wGo-zi-pe6" id="l9W-6S-J3R"/>
                 <outlet property="language" destination="7fL-tm-w86" id="pI4-7A-exl"/>
                 <outlet property="repoContent" destination="RvV-7E-jBh" id="fw0-8n-1rX"/>
                 <outlet property="userName" destination="6ng-Wr-I9q" id="a4J-q5-rDW"/>

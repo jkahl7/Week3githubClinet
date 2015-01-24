@@ -21,6 +21,7 @@ class UserSearchCollectionViewController: UIViewController, UICollectionViewData
   
   @IBOutlet weak var searchBar: UISearchBar!
   
+  
   override func viewDidLoad()
   {
    super.viewDidLoad()
@@ -37,46 +38,42 @@ class UserSearchCollectionViewController: UIViewController, UICollectionViewData
     self.netController = appDelegate.netController
   }
   
+  
   override func viewDidAppear(animated: Bool)
   {
     super.viewDidAppear(animated)
     self.collectionView.reloadData()
   }
 
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  override func didReceiveMemoryWarning()
+  {
+    super.didReceiveMemoryWarning()
+  }
   
   /*********************************************************************************************
   ***                           MARK:  CollectionView Methods                                ***
   *********************************************************************************************/
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
-        //#warning Incomplete method implementation -- Return the number of items in the section
-        return self.users.count
-    }
+  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+  {
+    return self.users.count
+  }
   
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
-    {
-      let itemProperties = self.collectionView.layoutAttributesForItemAtIndexPath(indexPath)
-      self.imageOrigin = self.view.convertRect(itemProperties!.frame, fromCoordinateSpace: collectionView)
-      
-      
-      /*
-      let storyboard = UIStoryboard(name: "Main", bundle:nil)
-      let toDetailVC = storyboard.instantiateViewControllerWithIdentifier("UserDetailViewController") as UserDetailViewController
-      toDetailVC.selectedUser = self.usersArray[indexPath.row]
-      self.navigationController?.pushViewController(toDetailVC, animated: true)
-    */
-    }
+  
+  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+  {
+    let itemProperties = self.collectionView.layoutAttributesForItemAtIndexPath(indexPath)
+    self.imageOrigin = self.view.convertRect(itemProperties!.frame, fromCoordinateSpace: collectionView)
+  }
+  
 
-  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+  {
     let cell = collectionView.dequeueReusableCellWithReuseIdentifier("USER_CELL", forIndexPath: indexPath) as UserCollectionViewCell
+   
     cell.imageView.image = nil
     
+    //lazy loading images
     if(self.users[indexPath.row].userAvatarImage == nil)
     {
       self.netController.fetchUserImage(self.users[indexPath.row].userAvatarURL, index: indexPath, completionHandler: { (userImage, storedIndex, errorReport) -> (Void) in
@@ -89,13 +86,22 @@ class UserSearchCollectionViewController: UIViewController, UICollectionViewData
     } else {
       cell.imageView.image = self.users[indexPath.row].userAvatarImage
     }
+    
+    cell.imageView.alpha     = 0
+    cell.imageView.transform = CGAffineTransformMakeScale(0.1, 0.1) 
+    UIView.animateWithDuration(0.6, delay: 0.3, options: nil, animations: { () -> Void in
+      cell.imageView.alpha     = 1.0
+      cell.imageView.transform = CGAffineTransformMakeScale(1.1, 1.1)
+      }) { (finished) -> Void in
+        cell.imageView.transform = CGAffineTransformMakeScale(1.0, 1.0)
+    }
+    
     return cell
   }
   
   /*********************************************************************************************
   ***                           MARK:  Segue + Navigation                                    ***
   *********************************************************************************************/
-  
   
   func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning?
   {
@@ -129,10 +135,9 @@ class UserSearchCollectionViewController: UIViewController, UICollectionViewData
   *********************************************************************************************/
   
   
-  func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-    
+  func searchBar(searchBar: UISearchBar, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+  {
     //TODO: add an alert here
-    
     
     if (text.userNameSearchValidation() == false)
     {

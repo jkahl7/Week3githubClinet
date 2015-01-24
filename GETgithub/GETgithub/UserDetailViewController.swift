@@ -19,13 +19,13 @@ class UserDetailViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.view.backgroundColor = UIColor.blackColor()
     
     if let image = self.selectedUser?.userAvatarImage
     {
       self.imageView.image  = image
       self.imageDestination = self.imageView.frame
     }
-    println("transition to detail complete")
   }
 
     override func didReceiveMemoryWarning()
