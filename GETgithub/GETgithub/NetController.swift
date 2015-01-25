@@ -121,16 +121,19 @@ class NetworkController
                 if(error == nil)
                 {
                   var repo = [Repo]()
-                  if let jsonArray = rawJSONData["items"] as? [[String:AnyObject]]
+                  if let totalCount = rawJSONData["total_count"] as? Int
                   {
-                    for item in jsonArray
+                    if let jsonArray = rawJSONData["items"] as? [[String:AnyObject]]
                     {
-                      let info = Repo(jsonDictionary: item)
-                      repo.append(info)
+                      for item in jsonArray
+                      {
+                        let info = Repo(jsonDictionary: item, totalCount: totalCount)
+                        repo.append(info)
+                      }
+                      NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
+                        callback(repo: repo, error: nil)
+                      })
                     }
-                    NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
-                      callback(repo: repo, error: nil)
-                    })
                   }
                 }
               }

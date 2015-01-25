@@ -26,7 +26,7 @@ class UserSearchCollectionViewController: UIViewController, UICollectionViewData
   {
    super.viewDidLoad()
     self.collectionView.reloadData()
-  
+    
     self.searchBar.delegate        = self
     self.collectionView.delegate   = self
     self.collectionView.dataSource = self
@@ -42,6 +42,8 @@ class UserSearchCollectionViewController: UIViewController, UICollectionViewData
   override func viewDidAppear(animated: Bool)
   {
     super.viewDidAppear(animated)
+    self.view.alpha                = 1.0
+
     self.collectionView.reloadData()
   }
 

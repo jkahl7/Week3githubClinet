@@ -15,12 +15,14 @@ struct Repo
   var userRepo    : String
   var userRepoURL : String?
   var language    : String?
+  var totalCount  : Int
   
-  init(jsonDictionary : [String:AnyObject])
+  init(jsonDictionary : [String:AnyObject], totalCount : Int)
   {
     self.userName    = jsonDictionary["name"] as String
     self.userRepo    = jsonDictionary["description"] as String
     self.userRepoURL = jsonDictionary["html_url"] as? String
     self.language    = jsonDictionary["language"] as? String
+    self.totalCount  = totalCount as Int
   }
 }
